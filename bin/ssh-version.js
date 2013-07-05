@@ -15,7 +15,7 @@ if (!opts.host) {
 sshversion(opts, function(err, version) {
   if (err) {
     console.error(err.message);
-    process.exit(0);
+    process.exit(1);
   }
 
   console.log(version);
