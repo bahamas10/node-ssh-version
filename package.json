@@ -1,0 +1,17 @@
+{
+  "name": "ssh-version",
+  "version": "0.0.0",
+  "description": "Determine the remote version of ssh running on a host",
+  "author": "Dave Eddy <dave@daveeddy.com> (http://www.daveeddy.com)",
+  "main": "./ssh-version.js",
+  "bin": {
+    "ssh-version": "./bin/ssh-version.js"
+  },
+  "scripts": {
+    "test": "for f in test/*; do echo \"$f\"; node \"$f\" || exit 1; done; echo Passed; exit 0"
+  },
+  "repository": "git://github.com/bahamas10/node-ssh-version.git",
+  "homepage": "https://github.com/bahamas10/node-ssh-version",
+  "license": "MIT",
+  "dependencies": {}
+}
