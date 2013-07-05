@@ -1,6 +1,6 @@
 {
   "name": "ssh-version",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Determine the remote version of ssh running on a host",
   "author": "Dave Eddy <dave@daveeddy.com> (http://www.daveeddy.com)",
   "main": "./ssh-version.js",
