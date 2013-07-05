@@ -1,15 +1,22 @@
 #!/usr/bin/env node
 
 var sshversion = require('../');
-var host = process.argv[2];
-var port = process.argv[3];
+var opts = {
+  host: process.argv[2],
+  port: process.argv[3],
+  timeout: +process.argv[4],
+}
 
-if (!host) {
-  console.error('usage: ssh-version <host> [port]');
+if (!opts.host) {
+  console.error('usage: ssh-version <host> [port] [timeout ms]');
   process.exit(1);
 }
 
-sshversion(host, port, function(err, version) {
-  if (err) console.error(err.message);
-  else console.log(version);
+sshversion(opts, function(err, version) {
+  if (err) {
+    console.error(err.message);
+    process.exit(0);
+  }
+
+  console.log(version);
 });

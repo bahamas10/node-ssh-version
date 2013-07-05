@@ -32,9 +32,16 @@ SSH-2.0-Sun_SSH_1.5
 Usage
 -----
 
-### `sshversion(host, [port], function(err, version))`
+### `sshversion(opts, function(err, version))`
 
-and
+`opts` can be a string specifying the host to identify, or an object with
+the following properties
+
+- `opts.host`: the host to connect to
+- `opts.port`: the port to connect to
+- `opts.timeout': the timeout, in ms, to enforce, defaults to system default
+
+#### Command Line
 
 ```
 usage: ssh-version <host> [port]

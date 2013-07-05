@@ -2,18 +2,29 @@ var net = require('net');
 
 module.exports = version;
 
-function version(host, port, cb) {
-  if (typeof port === 'function') {
-    cb = port;
-    port = null;
-  }
-  port = port || 22;
+function version(opts, cb) {
+  if (typeof opts === 'string')
+    opts = { host: opts };
 
-  var client = net.connect({host: host, port: port});
+  opts.port = opts.port || 22;
+
+  var client = net.connect(opts);
+
+  var timeout;
+  if (opts.timeout)
+    timeout = setTimeout(function() {
+      client.destroy();
+      cb(new Error('TIMEOUT'));
+    }, opts.timeout);
+
   client.on('data', function(data) {
     data = (data.toString() || '').trim();
     client.destroy();
+    if (timeout) clearTimeout(timeout);
     cb(null, data);
   });
-  client.on('error', cb);
+  client.on('error', function() {
+    if (timeout) clearTimeout(timeout);
+    cb.apply(null, arguments);
+  });
 }
